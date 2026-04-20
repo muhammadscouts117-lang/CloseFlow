@@ -1,0 +1,484 @@
+:root {
+  --bg: #f4efe7;
+  --bg-strong: #e8dece;
+  --surface: rgba(255, 250, 243, 0.82);
+  --surface-strong: #fffaf2;
+  --ink: #1e1a16;
+  --muted: #665f56;
+  --line: rgba(48, 39, 29, 0.12);
+  --accent: #c75b12;
+  --accent-deep: #8d3c08;
+  --green: #1d7a57;
+  --shadow: 0 20px 60px rgba(66, 44, 18, 0.12);
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(199, 91, 18, 0.22), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(29, 122, 87, 0.16), transparent 24%),
+    linear-gradient(180deg, #f8f1e7 0%, #f4efe7 100%);
+  font-family: "Segoe UI", sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(48, 39, 29, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(48, 39, 29, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), transparent 70%);
+}
+
+.page-shell {
+  width: min(1280px, calc(100% - 32px));
+  margin: 24px auto 40px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.35fr 0.9fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.hero-copy,
+.pricing-card,
+.panel {
+  backdrop-filter: blur(20px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+}
+
+.hero-copy {
+  padding: 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-copy::after {
+  content: "";
+  position: absolute;
+  right: -40px;
+  bottom: -40px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(199, 91, 18, 0.2), transparent 70%);
+}
+
+.pricing-card,
+.panel {
+  padding: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.76rem;
+  color: var(--accent-deep);
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+.list-title {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.02;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 5vw, 4.6rem);
+  max-width: 10ch;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+.hero-text,
+.helper-text,
+.deal-reason,
+.deal-meta,
+.detail-label,
+.metric-label,
+.analytics-row span {
+  color: var(--muted);
+}
+
+.hero-text {
+  max-width: 62ch;
+  font-size: 1.04rem;
+  margin: 18px 0 24px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+button,
+.file-button {
+  appearance: none;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+button:hover,
+.file-button:hover {
+  transform: translateY(-1px);
+}
+
+.primary-button {
+  background: var(--ink);
+  color: white;
+  box-shadow: 0 12px 24px rgba(30, 26, 22, 0.16);
+}
+
+.secondary-button {
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink);
+  border: 1px solid rgba(30, 26, 22, 0.08);
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.tier-selector {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.tier-option {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.tier-option.active {
+  border-color: rgba(199, 91, 18, 0.45);
+  background: linear-gradient(90deg, rgba(199, 91, 18, 0.13), rgba(255, 255, 255, 0.55));
+}
+
+.tier-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tier-price {
+  font-weight: 800;
+}
+
+.tier-summary {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.tier-details {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.tier-details div,
+.metric-card,
+.analytics-row,
+.control-group {
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(48, 39, 29, 0.08);
+  border-radius: var(--radius-md);
+}
+
+.tier-details div,
+.metric-card {
+  padding: 14px;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1.45fr 0.9fr;
+  gap: 20px;
+}
+
+.panel-large {
+  padding: 28px;
+}
+
+.stack {
+  display: grid;
+  gap: 20px;
+}
+
+.panel-header,
+.list-header,
+.deal-topline,
+.deal-meta,
+.action-row,
+.analytics-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(199, 91, 18, 0.12);
+  color: var(--accent-deep);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.badge-muted {
+  background: rgba(30, 26, 22, 0.06);
+  color: var(--muted);
+}
+
+.list-header {
+  margin: 22px 0 18px;
+  padding: 16px 18px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.6), rgba(232, 222, 206, 0.7));
+  border: 1px solid rgba(48, 39, 29, 0.08);
+}
+
+.list-title {
+  font-size: 1.2rem;
+}
+
+.completion-meter {
+  text-align: right;
+}
+
+.completion-meter strong {
+  display: block;
+  font-size: 1.5rem;
+}
+
+.hit-list {
+  display: grid;
+  gap: 14px;
+}
+
+.deal-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(48, 39, 29, 0.08);
+  background: var(--surface-strong);
+  padding: 18px;
+  animation: enter 420ms ease both;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.deal-company {
+  margin: 0 0 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.74rem;
+  color: var(--accent-deep);
+  font-weight: 700;
+}
+
+.score-pill {
+  min-width: 72px;
+  text-align: center;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(29, 122, 87, 0.12);
+  color: var(--green);
+  font-weight: 800;
+}
+
+.deal-meta {
+  flex-wrap: wrap;
+  margin: 12px 0;
+  font-size: 0.92rem;
+}
+
+.meta-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(30, 26, 22, 0.05);
+}
+
+.deal-reason {
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.action-row {
+  flex-wrap: wrap;
+}
+
+.action-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.action-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(48, 39, 29, 0.12);
+  padding: 10px 12px;
+  background: white;
+}
+
+.action-chip input {
+  accent-color: var(--green);
+}
+
+.cta-link {
+  color: var(--accent-deep);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.scoring-controls {
+  display: grid;
+  gap: 12px;
+}
+
+.control-group {
+  padding: 12px 14px;
+}
+
+.control-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 12px;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.metric-card strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 1.6rem;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.analytics-content {
+  display: grid;
+  gap: 10px;
+}
+
+.analytics-row {
+  padding: 14px;
+}
+
+.analytics-row strong {
+  display: block;
+}
+
+.empty-state {
+  padding: 28px;
+  text-align: center;
+  border-radius: var(--radius-lg);
+  border: 1px dashed rgba(48, 39, 29, 0.2);
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 1080px) {
+  .hero,
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    width: min(100% - 20px, 1280px);
+  }
+
+  .hero-copy,
+  .pricing-card,
+  .panel,
+  .panel-large {
+    padding: 20px;
+  }
+
+  .tier-details,
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .list-header,
+  .panel-header,
+  .deal-topline,
+  .deal-meta,
+  .action-row,
+  .analytics-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CloseFlow</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">CloseFlow</p>
+          <h1>Daily execution for reps who need revenue, not CRM clutter.</h1>
+          <p class="hero-text">
+            Upload a CSV, let the scoring engine rank what matters, and work through
+            a sharp daily hit list built for calls, follow-ups, and fast pipeline movement.
+          </p>
+          <div class="hero-actions">
+            <button class="primary-button" id="loadSampleButton">Load sample pipeline</button>
+            <label class="secondary-button file-button" for="csvInput">Upload CSV</label>
+            <input id="csvInput" type="file" accept=".csv" />
+          </div>
+          <p class="helper-text" id="uploadStatus">
+            CSV columns supported: name, company, stage, value, daysSinceLastContact, intent,
+            closeDate, owner, email, phone.
+          </p>
+        </div>
+
+        <section class="pricing-card">
+          <div class="pricing-heading">
+            <p class="eyebrow">Subscription Tiers</p>
+            <h2>Feature gating built into the workflow</h2>
+          </div>
+
+          <div class="tier-selector" id="tierSelector"></div>
+
+          <div class="tier-details">
+            <div>
+              <span class="detail-label">Lead volume</span>
+              <strong id="leadCapLabel">-</strong>
+            </div>
+            <div>
+              <span class="detail-label">Team analytics</span>
+              <strong id="analyticsLabel">-</strong>
+            </div>
+            <div>
+              <span class="detail-label">Custom scoring</span>
+              <strong id="customLogicLabel">-</strong>
+            </div>
+          </div>
+        </section>
+      </header>
+
+      <main class="dashboard">
+        <section class="panel panel-large">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Today</p>
+              <h2>Daily Hit List</h2>
+            </div>
+            <div class="header-meta">
+              <span id="visibleCountBadge" class="badge">0 records</span>
+              <span id="gatingBadge" class="badge badge-muted">Starter mode</span>
+            </div>
+          </div>
+
+          <div class="list-header">
+            <div>
+              <span class="list-title">Prioritized revenue actions</span>
+              <p class="helper-text">
+                Higher scores mean stronger urgency, value, and likelihood to convert.
+              </p>
+            </div>
+            <div class="completion-meter">
+              <span>Completion</span>
+              <strong id="completionPercent">0%</strong>
+            </div>
+          </div>
+
+          <div id="hitList" class="hit-list"></div>
+        </section>
+
+        <section class="stack">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Scoring Engine</p>
+                <h2>Rule Weights</h2>
+              </div>
+            </div>
+            <div id="scoringControls" class="scoring-controls"></div>
+            <p class="helper-text" id="scoringHint">
+              Enterprise unlocks custom scoring logic. Other tiers use CloseFlow defaults.
+            </p>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Snapshot</p>
+                <h2>Deal Overview</h2>
+              </div>
+            </div>
+            <div id="metricsGrid" class="metrics-grid"></div>
+          </section>
+
+          <section class="panel" id="analyticsPanel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Team Analytics</p>
+                <h2>Rep Performance</h2>
+              </div>
+            </div>
+            <div id="analyticsContent" class="analytics-content"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <template id="dealCardTemplate">
+      <article class="deal-card">
+        <div class="deal-topline">
+          <div>
+            <p class="deal-company"></p>
+            <h3 class="deal-name"></h3>
+          </div>
+          <div class="score-pill"></div>
+        </div>
+        <div class="deal-meta"></div>
+        <p class="deal-reason"></p>
+        <div class="action-row"></div>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
